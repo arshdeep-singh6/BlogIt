@@ -1,0 +1,56 @@
+<%- include('partials/header.ejs') %>
+
+    <main>
+        <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+            <div class="col-lg-6 px-0">
+              <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
+              <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+              <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+            </div>
+          </div>
+        <div class="row mb-2 mx-5">
+            <div class="col-md-6">
+              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                  <strong class="d-inline-block mb-2 text-primary-emphasis">History</strong>
+                  <h3 class="mb-0">Marcus Aurelius: The Roman Emperor</h3>
+                  <div class="mb-1 text-body-secondary">March 05</div>
+                  <p class="card-text mb-auto">Marcus Aurelius was Roman emperor, who was killed by his own son Commodus.
+                  </p>
+                  <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                    Continue reading
+                    <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                  </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                  <img class="bd-placeholder-img" width="200"  src="/images/Marcus-Aurelius-Statue.webp" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                  <strong class="d-inline-block mb-2 text-success-emphasis">Space</strong>
+                  <h3 class="mb-0">Earth</h3>
+                  <div class="mb-1 text-body-secondary">Feb 28</div>
+                  <p class="mb-auto">Our planet, the Earth is the only planet known to have life in different forms.</p>
+                  <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                    Continue reading
+                    <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                  </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                  <img class="bd-placeholder-img"  height="250" src="/images/earth.jpeg"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <%- include('partials/posts.ejs') %>
+
+          <%- include('partials/upload.ejs') %>
+
+
+    </main>
+<%- include('partials/footer.ejs') %>
+    
+    

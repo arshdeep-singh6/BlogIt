@@ -1,0 +1,121 @@
+<%# include('header.ejs') %>
+<main>
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">All Posts</h1>
+          <p class="lead text-body-secondary">Check out all the posts written by me, aka Arshdeep Singh your favorite author on this website. By the way, I am the only writer on this blog site. Haha! enjoy reading.😉</p>
+          <p>
+            <a href="#" class="btn btn-danger my-2">Subscribe</a>
+            <a href="#" class="btn btn-secondary my-2">Read</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+  
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+          
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top img-cover" width="100%" height="225" src="/images/marcus.webp" >
+              <div class="card-body">
+                <p class="card-text"> 
+                <strong class="post-title">Marcus Aurelius</strong> <br>
+                <em class="post-subText">By Arshdeep Singh</em> <br>
+                Marcus Aurelius was a roman emperor. His own son, Commodus, killed him,  because Marcus had instead appointed Maximus Decimus to be his successor.
+                There is a movie about Maximus Decimus namely Gladiator where he is portrayed by Richard Harris.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary disabled">Edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary disabled">Delete</button>
+                  </div>
+                  <small class="text-body-secondary">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="/images/earth.jpeg" >
+              <div class="card-body">
+                <p class="card-text">
+                  <strong class="post-title">The Earth</strong> <br>
+                  <em class="post-Author">By Arshdeep Singh</em> <br>
+                  Our planet, the Earth is the only planet known to have life in different forms. It is the third planet in the Solar system in terms of distance from the Sun. We have many photos of Earth's view from the space available on NASA's official website.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary disabled">Edit</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary disabled">Delete</button>
+                  </div>
+                  <small class="text-body-secondary">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% if (locals.blogPosts) { %>
+            <% blogPosts.forEach(post => { %>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img class="bd-placeholder-img card-img-top" width="100%" height="225" src = "<%= post.imgSource %>" >
+                  <div class="card-body">
+                    <p class="card-text">
+                      <strong class="post-title"><%= post.title %></strong> <br>
+                      <em class="post-Author">By <%= post.author %></em> <br>
+                      <%= post.content %></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <form action="/edit" method="post">
+                          <input class="hiddenInput" type="hidden" name="post-id" value="<%= post.id %>">
+                          <input type="submit" class="btn btn-sm btn-outline-secondary editPost" value="Edit">
+                        </form>
+                        <form action="/delete" method="post">
+                          <input class="hiddenInput" type="hidden" name="post-id" value="<%= post.id %>">
+                          <input type="submit" class="btn btn-sm btn-outline-secondary deletePost" value="Delete">
+                        </form>
+                      </div>
+                      <small class="text-body-secondary">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+           
+          <% } %>
+          
+
+          <%# if (locals.post) { %>
+            <!-- <div class="col">
+              <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card-body">
+                  <p class="card-text"> -->
+                    <!-- <strong class="post-title"><%# heading %></strong> <br>
+                    <em class="post-Author"><%# para %></em> <br> -->
+                    <%# pContent %>
+                    
+                  <!-- </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-body-secondary">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+          <%# } %>
+          
+          
+    </div>
+  
+  </main>
+ <%# include('footer.ejs') %> 
