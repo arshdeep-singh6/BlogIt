@@ -8,31 +8,18 @@ let postId = 0;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("Public"));
+app.use(express.json());
 
 app.get("/", (req, res)=>{
-    posts = [];
-    res.render("index.ejs");
+    res.render("index.ejs",  {blogPosts: posts});
 
 });
 
 app.get("/posts", (req, res)=>{
-    res.render("posts.ejs");
+    
+    res.render("posts.ejs", {blogPosts: posts});
 });
 
-app.post('/api/data/:id', (req, res) => {
-    const id = parseInt(req.params.id); // Parse ID from URL parameter
-    const index = data.findIndex(item => item.id === id);
-  
-    // Check if data exists for the ID
-    if (index === -1) {
-      return res.status(404).send("Data not found");
-    }
-  
-    // Remove data from the array using splice
-    data.splice(index, 1);
-  
-    res.json({ message: "Data deleted successfully" });
-  });
 
 app.post("/postBlog", (req, res)=>{
     let blog = req.body;
@@ -42,9 +29,40 @@ app.post("/postBlog", (req, res)=>{
     blog.id = postId++;
     posts.push(blog);
     console.log(blog);
-    res.redirect("index.ejs", {blogPosts: posts, imgSource: imgAddress});
+    res.redirect("/");
+    // res.render("index.ejs", {blogPosts: posts, imgSource: imgAddress});
 });
 
+
+app.post("/delete", (req, res) =>
+{
+    let post = req.body;
+    console.log(post);
+    console.log(posts);
+    for(let i = 0; i < posts.length; i ++)
+    {
+        if(posts[i].id === parseInt(post.id))
+        {
+            posts.splice(i, 1);
+        }
+    }
+    res.redirect("/");
+});
+
+
+app.post("/edit", (req, res) =>
+{
+    let post = req.body;
+    console.log(post);
+    for(let i = 0; i < posts.length; i ++)
+    {
+        if(posts[i].id === parseInt(post.id))
+        {
+            
+        }
+    }
+    res.redirect("/");
+});
 
 app.listen(port, ()=>{
     console.log(`Server is listening on port ${port}.`);

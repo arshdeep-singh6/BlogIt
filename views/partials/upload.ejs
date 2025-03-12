@@ -1,12 +1,10 @@
 <section id="upload" >
     <h3>Post Your Blog!</h3>
-    <form action="/postBlog" method="post">
+    <form action="/postBlog" method="post" autocomplete="off">
         <input class="uploadInput" type="text" name="title" placeholder="Blog Title">
         <input class="uploadInput" type="text" name="author" placeholder="Author">
         <textarea name="content" placeholder="Blog Content goes here" class="blog-content uploadInput" id="Blog-Content"   style="min-height:300px"></textarea>
         <input  type="submit" value="Post" class="btn btn-warning uploadInput">
-
-
     </form>
 
 </section>
