@@ -1,16 +1,16 @@
 import express from "express";
-import bodyParser from "body-parser";
 const app = express();
 
 const port = 3000;
 let posts = [];
 let postId = 0;
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static("Public"));
+app.use(express.urlencoded({extended:true}));
+app.use(express.static("Public")); //, {maxAge: "1d"}
 app.use(express.json());
 
 app.get("/", (req, res)=>{
+    
     res.render("index.ejs",  {blogPosts: posts});
 
 });
@@ -28,17 +28,13 @@ app.post("/postBlog", (req, res)=>{
     blog.imgSource = imgAddress;
     blog.id = postId++;
     posts.push(blog);
-    console.log(blog);
     res.redirect("/");
-    // res.render("index.ejs", {blogPosts: posts, imgSource: imgAddress});
 });
 
 
 app.post("/delete", (req, res) =>
 {
     let post = req.body;
-    console.log(post);
-    console.log(posts);
     for(let i = 0; i < posts.length; i ++)
     {
         if(posts[i].id === parseInt(post.id))
@@ -49,19 +45,40 @@ app.post("/delete", (req, res) =>
     res.redirect("/");
 });
 
+app.post("/update/:id", (req, res) =>{
+
+    posts.forEach(post => {
+        if(post.id === parseInt(req.params.id))
+        {
+            post.title = req.body.title;
+            post.content = req.body.content;
+        } 
+    });
+    res.redirect("/");
+})
+
 
 app.post("/edit", (req, res) =>
 {
     let post = req.body;
-    console.log(post);
+    let postIndex = -1;
     for(let i = 0; i < posts.length; i ++)
     {
         if(posts[i].id === parseInt(post.id))
         {
-            
+            postIndex = i;
         }
     }
-    res.redirect("/");
+    if(postIndex !== -1)
+    {
+        let blog = posts[postIndex];
+        res.render("edit.ejs", {post:blog});
+    }
+    else
+    {
+        res.redirect("/");
+    }
+    
 });
 
 app.listen(port, ()=>{

@@ -1,2 +1,5 @@
-const editButtons = document.querySelectorAll(".editPost");
-const deleteButtons = document.querySelectorAll(".deletePost");
+window.onload = function()
+{
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+}

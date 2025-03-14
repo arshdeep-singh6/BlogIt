@@ -26,8 +26,10 @@
     border-radius: 5px;
 }
 
-.btn{
+#submitBtn{
     border:none;
+    box-sizing: border-box;
+    padding: 0.5rem 5rem 0.5rem 5rem;
 }
 
 #upload{
