@@ -6,7 +6,7 @@ let posts = [];
 let postId = 0;
 
 app.use(express.urlencoded({extended:true}));
-app.use(express.static("Public")); //, {maxAge: "1d"}
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 app.get("/", (req, res)=>{
